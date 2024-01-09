@@ -1,2 +1,4 @@
 node_modules/
 dist/
+src/test/test-workspace/.markdowndb/files.json
+src/test/test-workspace/markdown.db
