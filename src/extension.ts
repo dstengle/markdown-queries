@@ -30,9 +30,11 @@ export function activate(context: vscode.ExtensionContext) {
             md.options.highlight = (code: any, lang: any) => {
                 console.log('code found', code, lang);
                 var sm = ServiceManager.getInstance();
-                var result = sm.getStartup();
+                var result = sm.runQuery(code);
+                var columnNames = result.columns;
+                var rows = result.values;
                 if (lang && lang.match(/\bfoamquery\b/i)) {
-                    return `<div class="foamquery">${code} There are  ${result} files in the database</div>`;
+                    return `<div class="foamquery">${code} results in ${columnNames} ${rows}</div>`;
                 }
                 return highlight(code, lang);
                };
