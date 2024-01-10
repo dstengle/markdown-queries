@@ -1,71 +1,41 @@
-# foam-queries README
+# markdown-queries README
 
-This is the README for your extension "foam-queries". After writing up a brief description, we recommend including the following sections.
+This is the repository for the markdown-queries extension which adds dynamic query support for markdown previews. This extension is heavily influenced by [Obsidian Dataview](https://github.com/blacksmithgu/obsidian-dataview)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This is more POC at this point, but it is possible to put a sql query against a specific sqlite database created by [MarkdownDB](https://github.com/datopian/markdowndb)
 
-For example if there is an image subfolder under your extension project workspace:
+There is a test workspace that you can open with the extension in debug mode after running 
 
-\!\[feature X\]\(images/feature-x.png\)
+```npm run prep-test-workspace```
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+If you open the workspace in src/test/test-workspace and open dynamic.md you should see the results of a query against the markdown files in the repo. 
 
-## Requirements
+The upshot is that you can do sql queries against against your markdown files including frontmatter attributes, tags, todos, etc.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## How it works
 
-## Extension Settings
+The extension declares that it extends the markdown-it processor in the standard markdown extension.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+It provides a highlighter plugin to the markdown parser that calls a service object to run queries on the sql.js database that is loaded into memory on initialization from the markdown.db file in the workspace.
 
-For example:
+This is different from a preview script which runs in a webview without access to the rest of the vscode API.
 
-This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## Future
 
-## Known Issues
+This extension has a lot of potential but there is plenty of work to do to make this useful to anyone.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+High level items that need dealing with:
 
-## Release Notes
+- Indexing - this currently relies on the DB being there already. It will take some work to figure out how to get MarkdownDB to run inside of vscode and use sql.js and sync the DB to disk. (I looked into using sqlite but native modules in vscode have a lot of issues [Native node modules from extensions](https://github.com/microsoft/vscode/issues/658))
 
-Users appreciate release notes as you update your extension.
+- Query language - Using SQL directly will be pretty awkward for most cases. At the same time, I don't want to write a custom query system. My current thought is to do some transparent macros to deal with common joins or accessing json metadata.
 
-### 1.0.0
+- Formatting - It would be nice to have some options for more flexible formatting of results for things like group_by and of course making todos and such look nice. This might require figuring out the split between the markdown-it plugin and preview scripts.
 
-Initial release of ...
+- Integration with [Foam](https://github.com/foambubble/foam) - This extension comes out of my desire to get more out of my knowledgebase, but at the moment it doesn't seem necessary to tie the two together yet.
 
-### 1.0.1
+- Security - Running arbitrary sql from user input? https://xkcd.com/327/
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**

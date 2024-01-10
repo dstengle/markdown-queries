@@ -13,10 +13,10 @@ export function activate(context: vscode.ExtensionContext) {
     
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "foam-queries" is now active!');
+    console.log('Congratulations, your extension "markdown-queries" is now active!');
     
     // Register a command to print "Hello World"
-    let disposable = vscode.commands.registerCommand('foamqueries.helloWorld', () => {
+    let disposable = vscode.commands.registerCommand('markdownqueries.helloWorld', () => {
         vscode.window.showInformationMessage('Hello World');
     });
     
@@ -24,7 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
     
     return {
         extendMarkdownIt(md: any) {
-            console.log('extendMarkdownIt from foam-queries');
+            console.log('extendMarkdownIt from markdown-queries');
             const highlight = md.options.highlight;
             
             md.options.highlight = (code: any, lang: any) => {
@@ -34,8 +34,8 @@ export function activate(context: vscode.ExtensionContext) {
                 var columnNames = result.columns;
                 var rows = result.values;
                 var htmlResult = sm.processQueryResultsToHtmlTable(result);
-                if (lang && lang.match(/\bfoamquery\b/i)) {
-                    return `<div class="foamquery"><h3>${code} results in:</h3> ${htmlResult}</div>`;
+                if (lang && lang.match(/\bmarkdownquery\b/i)) {
+                    return `<div class="markdownquery"><h3>${code} results in:</h3> ${htmlResult}</div>`;
                 }
                 return highlight(code, lang);
                };

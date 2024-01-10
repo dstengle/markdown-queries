@@ -1,7 +1,7 @@
 {
-  "name": "foam-queries",
-  "displayName": "foam-queries",
-  "description": "Foam markdown query support for markdown previews",
+  "name": "markdown-queries",
+  "displayName": "markdown-queries",
+  "description": "markdown markdown query support for markdown previews",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.85.0"

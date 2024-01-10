@@ -1,12 +1,12 @@
 function init() {
 
-    console.log('init from foam-queries');
-    var foamqueryElements = document.getElementsByClassName('foamquery');
-    console.log('foamqueryElements, looking for elements with class foamquery');
-    console.log('The elements', foamqueryElements);
+    console.log('init from markdown-queries');
+    var markdownqueryElements = document.getElementsByClassName('markdownquery');
+    console.log('markdownqueryElements, looking for elements with class markdownquery');
+    console.log('The elements', markdownqueryElements);
     var changes: any = [];
-    for (let index = 0; index < foamqueryElements.length; index++) {
-        var element = foamqueryElements.item(index);
+    for (let index = 0; index < markdownqueryElements.length; index++) {
+        var element = markdownqueryElements.item(index);
         if (element) {
             var source = element.textContent;
 

@@ -7,6 +7,6 @@ title: Markdown with a query
 
 #testtag
 
-```foamquery
+```markdownquery
 select file_path, value from files, json_each(files.metadata, '$.tags');
 ```
