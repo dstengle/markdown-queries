@@ -2,6 +2,8 @@
 
 This is the repository for the markdown-queries extension which adds dynamic query support for markdown previews. This extension is heavily influenced by [Obsidian Dataview](https://github.com/blacksmithgu/obsidian-dataview)
 
+![Demo of markdown sql query in preview](docs/Screenshot_markdown-queries.png)
+
 ## Features
 
 This is more POC at this point, but it is possible to put a sql query against a specific sqlite database created by [MarkdownDB](https://github.com/datopian/markdowndb)
