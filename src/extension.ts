@@ -33,8 +33,9 @@ export function activate(context: vscode.ExtensionContext) {
                 var result = sm.runQuery(code);
                 var columnNames = result.columns;
                 var rows = result.values;
+                var htmlResult = sm.processQueryResultsToHtmlTable(result);
                 if (lang && lang.match(/\bfoamquery\b/i)) {
-                    return `<div class="foamquery">${code} results in ${columnNames} ${rows}</div>`;
+                    return `<div class="foamquery"><h3>${code} results in:</h3> ${htmlResult}</div>`;
                 }
                 return highlight(code, lang);
                };

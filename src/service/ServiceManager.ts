@@ -68,6 +68,30 @@ class ServiceManager {
             return result;
         }
     }
+
+    public processQueryResultsToHtmlTable(queryResults: sqljs.QueryResults): string {
+        const columns = queryResults.columns;
+        const rows = queryResults.values;
+
+        let table = '<table>';
+        table += '<tr>';
+        for (const column of columns) {
+            table += `<th>${column}</th>`;
+        }
+        table += '</tr>';
+
+        for (const row of rows) {
+            table += '<tr>';
+            for (const value of row) {
+                table += `<td>${value}</td>`;
+            }
+            table += '</tr>';
+        }
+
+        table += '</table>';
+
+        return table;
+    }
 }
 
 export default ServiceManager;
